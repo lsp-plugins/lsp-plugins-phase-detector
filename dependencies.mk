@@ -84,6 +84,11 @@ LSP_PLUGINS_SHARED_NAME    := lsp-plugins-shared
 LSP_PLUGINS_SHARED_TYPE    := src
 LSP_PLUGINS_SHARED_URL     := https://github.com/sadko4u/$(LSP_PLUGINS_SHARED_NAME).git
 
+LSP_PLUGIN_FW_VERSION      := 0.5.0
+LSP_PLUGIN_FW_NAME         := lsp-plugin-fw
+LSP_PLUGIN_FW_TYPE         := src
+LSP_PLUGIN_FW_URL          := https://github.com/sadko4u/$(LSP_PLUGIN_FW_NAME).git
+
 LIBSNDFILE_VERSION         := system
 LIBSNDFILE_NAME            := sndfile
 LIBSNDFILE_TYPE            := pkg
