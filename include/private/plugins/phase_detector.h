@@ -25,6 +25,8 @@
 #include <lsp-plug.in/dsp-units/util/Delay.h>
 #include <lsp-plug.in/dsp-units/ctl/Bypass.h>
 #include <lsp-plug.in/plug-fw/plug.h>
+#include <lsp-plug.in/plug-fw/core/IDBuffer.h>
+
 #include <private/meta/phase_detector.h>
 
 namespace lsp
@@ -79,6 +81,10 @@ namespace lsp
                 size_t              nMaxGapSize;
                 size_t              nGapOffset;
 
+                ssize_t             nBest;
+                ssize_t             nSelected;
+                ssize_t             nWorst;
+
                 buffer_t            vA, vB;
 
                 float               fTau;
@@ -95,8 +101,7 @@ namespace lsp
                 meters_t            vMeters[MK_COUNT];  // Output meters
                 plug::IPort        *pFunction;          // Output function
 
-                // TODO
-//                float_buffer_t     *pIDisplay;      // Inline display buffer
+                core::IDBuffer     *pIDisplay;          // Inline display buffer
 
             protected:
                 size_t              fill_gap(const float *a, const float *b, size_t count);

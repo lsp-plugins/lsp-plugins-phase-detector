@@ -23,9 +23,10 @@
 #include <lsp-plug.in/dsp-units/units.h>
 #include <lsp-plug.in/common/alloc.h>
 #include <lsp-plug.in/common/debug.h>
+#include <lsp-plug.in/stdlib/math.h>
 #include <lsp-plug.in/dsp/dsp.h>
 
-#define BUFFER_SIZE         0x1000U
+#include <lsp-plug.in/shared/id_colors.h>
 
 #define TRACE_PORT(p)       lsp_trace("  port id=%s", (p)->metadata()->id);
 
@@ -67,6 +68,10 @@ namespace lsp
             nMaxGapSize         = 0;
             nGapOffset          = 0;
 
+            nBest               = 0;
+            nWorst              = 0;
+            nSelected           = 0;
+
             vA.nSize            = 0;
             vA.pData            = NULL;
             vB.nSize            = 0;
@@ -96,7 +101,7 @@ namespace lsp
             }
             pFunction           = NULL;
 
-//            pIDisplay           = NULL;
+            pIDisplay           = NULL;
         }
 
         phase_detector::~phase_detector()
@@ -244,11 +249,11 @@ namespace lsp
                 delete []   vNormalized;
                 vNormalized = NULL;
             }
-//            if (pIDisplay != NULL)
-//            {
-//                pIDisplay->detroy();
-//                pIDisplay   = NULL;
-//            }
+            if (pIDisplay != NULL)
+            {
+                pIDisplay->destroy();
+                pIDisplay   = NULL;
+            }
         }
 
         bool phase_detector::set_time_interval(float interval, bool force)
@@ -424,9 +429,9 @@ namespace lsp
             dsp::minmax_index(vNormalized, nFuncSize, &worst, &best);
 
             // Output values
-            ssize_t nSelected           = ssize_t(nVectorSize - sel);
-            ssize_t nBest               = ssize_t(nVectorSize - best);
-            ssize_t nWorst              = ssize_t(nVectorSize - worst);
+            nBest               = ssize_t(nVectorSize - best);
+            nSelected           = ssize_t(nVectorSize - sel);
+            nWorst              = ssize_t(nVectorSize - worst);
 
             vMeters[MK_BEST].pTime      -> set_value(dspu::samples_to_millis(fSampleRate, nBest));
             vMeters[MK_BEST].pSamples   -> set_value(nBest);
@@ -468,8 +473,81 @@ namespace lsp
 
         bool phase_detector::inline_display(plug::ICanvas *cv, size_t width, size_t height)
         {
-            // TODO
-            return false;
+            // Check proportions
+            if (height > (M_RGOLD_RATIO * width))
+                height  = M_RGOLD_RATIO * width;
+
+            // Init canvas
+            if (!cv->init(width, height))
+                return false;
+            width   = cv->width();
+            height  = cv->height();
+            float cx    = width >> 1;
+            float cy    = height >> 1;
+
+            // Clear background
+            cv->set_color_rgb((bBypass) ? CV_DISABLED : CV_BACKGROUND);
+            cv->paint();
+
+            // Draw axis
+            cv->set_line_width(1.0);
+            cv->set_color_rgb(CV_WHITE, 0.5f);
+            cv->line(cx, 0, cx, height);
+            cv->line(0, cy, width, cy);
+
+            // Allocate buffer: t, f(t)
+            pIDisplay           = core::IDBuffer::reuse(pIDisplay, 2, width);
+            core::IDBuffer *b   = pIDisplay;
+            if (b == NULL)
+                return false;
+
+            if (!bBypass)
+            {
+                float di    = (nFuncSize - 1.0) / width;
+                float dy    = cy-2;
+
+                for (size_t i=0; i<width; ++i)
+                {
+                    b->v[0][i]  = width - i;
+                    b->v[1][i]  = cy - dy * vNormalized[size_t(i * di)];
+                }
+
+                // Set color and draw
+                cv->set_color_rgb(CV_MESH);
+                cv->set_line_width(2);
+                cv->draw_lines(b->v[0], b->v[1], width);
+
+                // Draw worst meter
+                cv->set_line_width(1);
+                cv->set_color_rgb(CV_RED);
+                ssize_t point   = ssize_t(nVectorSize) - nWorst;
+                float x         = width - point/di;
+                float y         = cy - dy * vNormalized[point];
+                cv->line(x, 0, x, height);
+                cv->line(0, y, width, y);
+
+                // Draw best meter
+                cv->set_line_width(1);
+                cv->set_color_rgb(CV_GREEN);
+                point           = ssize_t(nVectorSize) - nBest;
+                x               = width - point/di;
+                y               = cy - dy * vNormalized[point];
+                cv->line(x, 0, x, height);
+                cv->line(0, y, width, y);
+            }
+            else
+            {
+                for (size_t i=0; i<width; ++i)
+                    b->v[0][i]      = i;
+                dsp::fill(b->v[1], cy, width);
+
+                // Set color and draw
+                cv->set_color_rgb(CV_SILVER);
+                cv->set_line_width(2);
+                cv->draw_lines(b->v[0], b->v[1], width);
+            }
+
+            return true;
         }
 
         void phase_detector::dump_buffer(dspu::IStateDumper *v, const buffer_t *buf, const char *label)
@@ -496,6 +574,10 @@ namespace lsp
             v->write("vNormalized", vNormalized);
             v->write("nMaxGapSize", nMaxGapSize);
             v->write("nGapOffset", nGapOffset);
+
+            v->write("nBest", nBest);
+            v->write("nSelected", nSelected);
+            v->write("nWorst", nWorst);
 
             dump_buffer(v, &vA, "vA");
             dump_buffer(v, &vB, "vB");
@@ -528,8 +610,7 @@ namespace lsp
             v->end_array();
             v->write("pFunction", pFunction);
 
-            // TODO
-//            v->write("pIDisplay", pIDisplay);
+            v->write("pIDisplay", pIDisplay);
         }
 
     }
