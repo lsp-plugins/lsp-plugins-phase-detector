@@ -19,6 +19,22 @@
  * along with lsp-plugins-phase-detector. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <private/plugins/phase_detector.h>
+#include <lsp-plug.in/plug-fw/ui.h>
 
+namespace lsp
+{
+    namespace plugui
+    {
+        //---------------------------------------------------------------------
+        // Plugin UI factory
+        static const meta::plugin_t *uis[] =
+        {
+            &meta::phase_detector
+        };
+
+        static ui::Factory factory(uis, 1);
+    }
+}
 
 

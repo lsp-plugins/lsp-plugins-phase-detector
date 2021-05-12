@@ -19,6 +19,79 @@
  * along with lsp-plugins-phase-detector. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <lsp-plug.in/plug-fw/meta/ports.h>
+#include <lsp-plug.in/shared/meta/developers.h>
+#include <private/meta/phase_detector.h>
+#include <private/version.h>
 
+namespace lsp
+{
+    namespace meta
+    {
+        //-------------------------------------------------------------------------
+        // Phase detector
+        static const port_t phase_detector_ports[] =
+        {
+            // Input audio ports
+            AUDIO_INPUT_A,
+            AUDIO_INPUT_B,
+
+            // Output audio ports
+            AUDIO_OUTPUT_A,
+            AUDIO_OUTPUT_B,
+
+            // Input controls
+            BYPASS,
+            TRIGGER("reset", "Reset"),
+            LOG_CONTROL("time", "Time", U_MSEC, phase_detector_metadata::DETECT_TIME),
+            LOG_CONTROL("react", "Reactivity", U_SEC, phase_detector_metadata::REACT_TIME),
+            CONTROL("sel", "Selector", U_PERCENT, phase_detector_metadata::SELECTOR),
+
+            // Output controls
+            METERZ("b_t", "Best time", U_MSEC, phase_detector_metadata::TIME),
+            METERZ("b_s", "Best samples", U_SAMPLES, phase_detector_metadata::SAMPLES),
+            METERZ("b_d", "Best distance", U_CM, phase_detector_metadata::DISTANCE),
+            METERZ("b_v", "Best value", U_NONE, phase_detector_metadata::VALUE),
+
+            METERZ("s_t", "Selected time", U_MSEC, phase_detector_metadata::TIME),
+            METERZ("s_s", "Selected samples", U_SAMPLES, phase_detector_metadata::SAMPLES),
+            METERZ("s_d", "Selected distance", U_CM, phase_detector_metadata::DISTANCE),
+            METERZ("s_v", "Selected value", U_NONE, phase_detector_metadata::VALUE),
+
+            METERZ("w_t", "Worst time", U_MSEC, phase_detector_metadata::TIME),
+            METERZ("w_s", "Worst samples", U_SAMPLES, phase_detector_metadata::SAMPLES),
+            METERZ("w_d", "Worst distance", U_CM, phase_detector_metadata::DISTANCE),
+            METERZ("w_v", "Worst value", U_NONE, phase_detector_metadata::VALUE),
+
+            MESH("f", "Function", 2, phase_detector_metadata::MESH_POINTS),
+
+            PORTS_END
+        };
+
+        static const int phase_detector_classes[] = { C_ANALYSER, -1 };
+
+        const plugin_t phase_detector =
+        {
+            "Phasendetektor",
+            "Phase Detector",
+            "PD1",
+            &developers::v_sadovnikov,
+            "phase_detector",
+            LSP_LV2_URI("phase_detector"),
+            LSP_LV2UI_URI("phase_detector"),
+            "jffz",
+            LSP_LADSPA_PHASE_DETECTOR_BASE + 0,
+            LSP_LADSPA_URI("phase_detector"),
+            LSP_PLUGINS_PHASE_DETECTOR_VERSION,
+            phase_detector_classes,
+            E_DUMP_STATE,
+            phase_detector_ports,
+            "util/phase_detector.xml",
+            NULL,
+            NULL
+        };
+
+    }
+}
 
 
