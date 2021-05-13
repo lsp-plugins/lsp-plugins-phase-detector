@@ -1,5 +1,5 @@
 <plugin resizable="true">
-	<hbox spacing="4">
+	<hbox spacing="2">
 		<group text="groups.controls">
 			<grid rows="3" cols="3" spacing="2">
 				<label text="labels.max_time" />
@@ -42,8 +42,8 @@
 				<indicator id="w_v" format="+-f4.3!" tcolor="red" />
 			</grid>
 		</group>
-		<vbox size="2" border="2" expand="true">
-			<graph width="192" expand="true" fill="true">
+		<vbox border="2" expand="true">
+			<graph width.min="192" expand="true" fill="true">
 				<center hpos="0" vpos="0" visible="false" />
 				<axis id="time" min="-1.0" max="1.0" color="g_white" angle="0.0" logarithmic="false" />
 				<axis min="-1.05" max="1.05" color="g_white" angle="0.5" logarithmic="false" />
@@ -66,7 +66,7 @@
 			</graph>
 			<label text="labels.graphs.correlation" />
 		</vbox>
-		<align pad_left="8" pad_right="8">
+		<align pad.l="8" pad.r="8">
 			<vbox>
 				<label text="labels.reset" />
 				<button id="reset" size="32" />
