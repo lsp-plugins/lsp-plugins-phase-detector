@@ -8,7 +8,7 @@
 				
 				<knob id="time" size="24" />
 				<knob id="react" size="24" />
-				<knob id="sel" size="24" scale_color="yellow" balance="0.5" />
+				<knob id="sel" size="24" scale.color="yellow" balance="0.5" />
 				
 				<value id="time" />
 				<value id="react" />
@@ -45,7 +45,7 @@
 		<vbox border="2" expand="true">
 			<graph width.min="192" expand="true" fill="true">
 				<origin hpos="0" vpos="0" visible="false" />
-				<axis id="time" min="-1.0" max="1.0" color="g_white" angle="0.0" log="false" />
+				<axis id="time" min="-1.0 * :time" max="1.0 * :time" color="g_white" angle="0.0" log="false" />
 				<axis min="-1.05" max="1.05" color="g_white" angle="0.5" log="false" />
 				
 				<mesh id="f" width="3" />
