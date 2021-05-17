@@ -59,10 +59,10 @@
 				<marker id="s_t" color="yellow" basis="0" parallel="1" />
 				<marker id="s_v" color="yellow" basis="1" parallel="0" />
 				
-				<text text="graph.axis.+phase" coord="0;1.05" halign="1" valign="-1" color="green" />
-				<text text="graph.axis.-phase" coord="0;-1.05" halign="1" valign="1" color="red" />
+				<text text="graph.axis.+phase" x="0" y="1" halign="1" valign="-1" color="green" />
+				<text text="graph.axis.-phase" x="0" y="-1" halign="1" valign="1" color="red" />
 				
-				<text text="graph.axis.time" coord="0;0" halign="-1" valign="-1" color="white" />
+				<text text="graph.axis.time" x="0" y="0" halign="-1" valign="-1" color="white" />
 			</graph>
 			<label text="labels.graphs.correlation" />
 		</vbox>
