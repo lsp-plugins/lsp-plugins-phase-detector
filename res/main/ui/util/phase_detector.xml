@@ -42,7 +42,7 @@
 				<indicator id="w_v" format="+-f4.3!" tcolor="red" />
 			</grid>
 		</group>
-		<vbox border="2" expand="true">
+		<vbox expand="true">
 			<graph width.min="192" expand="true" fill="true">
 				<origin hpos="0" vpos="0" visible="false" />
 				<axis id="time" min="-1.0 * :time" max="1.0 * :time" color="g_white" angle="0.0" log="false" />
