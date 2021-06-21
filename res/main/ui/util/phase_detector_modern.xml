@@ -1,0 +1,136 @@
+<plugin resizable="true">
+	<!-- header -->
+	<vbox>
+		<hbox height.min="44">
+				<grid rows="3" cols="9">
+					<cell width.min="106" rows="2" cols="1">
+						<hbox >
+							<label font.size="28.0" color="menu_icon" padding.l="7" padding.r="7" halign="-1" text="LSP #"/>
+							<void expand="true"/></hbox>
+					</cell>
+					<cell width.min="37" rows="2" cols="1"><void expand="true"/></cell>
+					<void />
+					<cell rows="1" cols="6">
+						<hbox>
+							<void expand="true"/>
+							<label color="7d83a5" font.bold="true" padding.t="2" padding.l="7" padding.r="7" halign="1" text="PHASE DETECTOR"/>
+							<label color="#373944" text="|"/>
+							<label font.bold="true" color="#238093" padding.t="2" padding.l="7" padding.r="7" halign="1" text="PD1"/>
+						</hbox>
+					</cell>
+					<!-- separator triangle -->
+					<void bg.color="bg" width.min="20" height.min="20"/>
+					<cell rows="1" cols="6">
+						<hbox halign="1">
+							<void expand="true"/>
+							<label bg.color="bg" color="menu_icon" padding.t="4" halign="1" text="#"/>
+							<label bg.color="bg" color="fg2" padding.t="4" padding.l="3" padding.r="10" halign="1" text="MENU"/>
+							<label bg.color="bg" color="menu_icon" padding.t="4" halign="1" text="#"/>
+							<label bg.color="bg" color="fg2" padding.t="4" padding.l="3" padding.r="10" halign="1" text="RESET"/>
+							<label bg.color="bg" color="menu_icon" padding.t="4" halign="1" text="#"/>
+							<label bg.color="bg" color="fg2" padding.t="4" padding.l="3" padding.r="10" halign="1" text="SCALE"/>
+							<label bg.color="bg" color="menu_icon" padding.t="4" halign="1" text="#"/>
+							<label bg.color="bg" color="fg2" padding.t="4" padding.l="3" padding.r="10" halign="1" text="ABOUT"/>
+							<button id="bypass" color="#962e30" hover.color="#b52325" bg.color="bg" text.color="#36211a" padding.t="4" font.size="6" text="BYPASS" size="14"/>
+
+						</hbox>
+					</cell>
+
+				</grid>
+
+		
+		</hbox>
+		<void height.min="4" fill="true"/>
+		<!-- meat -->
+		<vbox>
+			<hbox >
+
+
+					<group ipadding="0" text="labels.graphs.correlation" expand="true">
+					<graph width.min="200" height.min="100" expand="true" fill="true">
+						<origin hpos="0" vpos="0" visible="false"/>
+						<axis id="time" min="-1.0 * :time" max="1.0 * :time" color="g_white" angle="0.0" log="false"/>
+						<axis min="-1.05" max="1.05" color="g_white" angle="0.5" log="false"/>
+
+						<mesh id="f" width="3"/>
+
+						<marker id="w_t" color="red" basis="0" parallel="1"/>
+						<marker id="w_v" color="red" basis="1" parallel="0"/>
+
+						<marker id="b_t" color="green" basis="0" parallel="1"/>
+						<marker id="b_v" color="green" basis="1" parallel="0"/>
+
+						<marker id="s_t" color="yellow" basis="0" parallel="1"/>
+						<marker id="s_v" color="yellow" basis="1" parallel="0"/>
+
+						<text text="graph.axis.+phase" x="0" y="1" halign="1" valign="-1" color="green"/>
+						<text text="graph.axis.-phase" x="0" y="-1" halign="1" valign="1" color="red"/>
+
+						<text text="graph.axis.time" x="0" y="0" halign="-1" padding.r="16" valign="-1" color="white"/>
+					</graph>
+				</group>
+
+				<void width="4"/>
+				<group width.min="194" text="groups.controls">
+					<grid spacing="4" rows="3" cols="3">
+						<label text="labels.max_time"/>
+						<label text="labels.metering.reactivity"/>
+						<label text="labels.sel_time"/>
+
+						<knob id="time" size="24"/>
+						<knob id="react" size="24"/>
+						<knob id="sel" size="24" scale_color="yellow" balance="0.5"/>
+
+						<value id="time" same_line="true"/>
+						<value id="react" same_line="true"/>
+						<value id="sel" same_line="true"/>
+					</grid>
+				</group>
+
+			</hbox>
+			<void height="4"/>
+			<hbox >
+
+				<group text="groups.monitoring">
+					<hbox spacing="4">
+						<grid spacing="4" rows="4" cols="5">
+							<label text="labels.signal.phase" hfill="true" htext="-1"/>
+							<label text="labels.delay:ms"/>
+							<label text="labels.offset:samp"/>
+							<label text="labels.distance:cm"/>
+							<label text="labels.value"/>
+
+							<label text="labels.values.best" color="green" hfill="true" htext="-1"/>
+							<indicator id="b_t" format="+-f5.3!" tcolor="green"/>
+							<indicator id="b_s" format="+-i4" tcolor="green"/>
+							<indicator id="b_d" format="+-f5.1!" tcolor="green"/>
+							<indicator id="b_v" format="+-f4.3!" tcolor="green"/>
+
+							<label text="labels.values.selected" color="yellow" hfill="true" htext="-1"/>
+							<indicator id="s_t" format="+-f5.3!" tcolor="yellow"/>
+							<indicator id="s_s" format="+-i4" tcolor="yellow"/>
+							<indicator id="s_d" format="+-f5.1!" tcolor="yellow"/>
+							<indicator id="s_v" format="+-f4.3!" tcolor="yellow"/>
+
+							<label text="labels.values.worst" color="red" hfill="true" htext="-1"/>
+							<indicator id="w_t" format="+-f5.3!" tcolor="red"/>
+							<indicator id="w_s" format="+-i4" tcolor="red"/>
+							<indicator id="w_d" format="+-f5.1!" tcolor="red"/>
+							<indicator id="w_v" format="+-f4.3!" tcolor="red"/>
+						</grid>
+						<align pad.l="8" pad.r="8">
+							<vbox>
+								<label text="labels.reset"/>
+								<button id="reset" size="32"/>
+								<led id="reset" color="red" lcolor="red" size="8"/>
+							</vbox>
+						</align>
+					</hbox>
+				</group>
+
+			</hbox>
+
+		</vbox>
+	</vbox>
+
+</plugin>
