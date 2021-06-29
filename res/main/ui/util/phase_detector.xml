@@ -1,7 +1,7 @@
 <plugin resizable="true">
 	<grid rows="2" cols="2" vspacing="4" hspacing="4">
 		<!-- correlation-graph -->
-		<group ipadding="0" text="labels.graphs.correlation" expand="true">
+		<group ui:inject="GraphGroup" ipadding="0" text="labels.graphs.correlation" expand="true">
 			<graph width.min="200" height.min="100" expand="true" fill="true">
 				<origin hpos="0" vpos="0" visible="false"/>
 				<axis id="time" min="-1.0 * :time" max="1.0 * :time" color="g_white" angle="0.0" log="false"/>
