@@ -74,7 +74,9 @@
 						<vbox>
 							<label text="labels.reset"/>
 							<button id="reset" size="32"/>
-							<led id="reset" hole.color="PD1_hole" color="PD1" lcolor="PD1_led" size="8"/>
+							<led id="reset" hole.color="PD1_hole" color="PD1" lcolor="PD1_led"
+								ui:inject="ButtonLed" 
+							/>
 						</vbox>
 					</align>
 				</hbox>
