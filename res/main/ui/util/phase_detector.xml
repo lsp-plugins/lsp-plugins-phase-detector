@@ -4,8 +4,8 @@
 		<group ui:inject="GraphGroup" ipadding="0" text="labels.graphs.correlation" expand="true">
 			<graph width.min="200" height.min="100" expand="true" fill="true">
 				<origin hpos="0" vpos="0" visible="false"/>
-				<axis id="time" min="-1.0 * :time" max="1.0 * :time" color="g_white" angle="0.0" log="false"/>
-				<axis min="-1.05" max="1.05" color="bright_gray" angle="0.5" log="false"/>
+				<axis id="time" min="-1.0 * :time" max="1.0 * :time" color="graph_sec" angle="0.0" log="false"/>
+				<axis min="-1.05" max="1.05" color="graph_prim" angle="0.5" log="false"/>
 
 				<mesh id="f" width="3"/>
 
@@ -21,7 +21,7 @@
 				<text text="graph.axis.+phase" x="0" y="1" halign="1" valign="-1" color="green"/>
 				<text text="graph.axis.-phase" x="0" y="-1" halign="1" valign="1" color="red"/>
 
-				<text text="graph.axis.time" x="0" y="0" halign="-1" padding.r="16" valign="-1" color="bright_gray" />
+				<text text="graph.axis.time" x="0" y="0" halign="-1" padding.r="16" valign="-1" color="graph_prim" />
 			</graph>
 		</group>
 
@@ -75,7 +75,7 @@
 							<label text="labels.reset"/>
 							<button id="reset" size="32"/>
 							<led id="reset" hole.color="PD1_hole" color="PD1" lcolor="PD1_led"
-								ui:inject="ButtonLed" 
+								ui:inject="ButtonLed"
 							/>
 						</vbox>
 					</align>
