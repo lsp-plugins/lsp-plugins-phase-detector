@@ -610,7 +610,7 @@ namespace lsp
             v->end_array();
             v->write("pFunction", pFunction);
 
-            v->write("pIDisplay", pIDisplay);
+            v->write_object("pIDisplay", pIDisplay);
         }
 
     }
