@@ -41,12 +41,12 @@ namespace lsp
             &meta::phase_detector
         };
 
-        static plug::Module *phase_detector_factory(const meta::plugin_t *meta)
+        static plug::Module *plugin_factory(const meta::plugin_t *meta)
         {
             return new phase_detector(meta);
         }
 
-        static plug::Factory factory(phase_detector_factory, plugins, 1);
+        static plug::Factory factory(plugin_factory, plugins, 1);
 
         //---------------------------------------------------------------------
         // Implementation
