@@ -21,7 +21,7 @@
 # Package version
 ARTIFACT_ID                 = LSP_PLUGINS_PHASE_DETECTOR
 ARTIFACT_NAME               = lsp-plugins-phase-detector
-ARTIFACT_DESC               = Phase detector plugin
+ARTIFACT_DESC               = Phase Detector plugin series
 ARTIFACT_HEADERS            = lsp-plug.in
 ARTIFACT_EXPORT_ALL         = 1
 ARTIFACT_VERSION            = 1.0.0-devel
