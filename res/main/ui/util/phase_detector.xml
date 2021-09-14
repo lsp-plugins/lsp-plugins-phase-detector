@@ -21,7 +21,7 @@
 				<text text="graph.axis.+phase" x="0" y="1" halign="1" valign="-1" color="green"/>
 				<text text="graph.axis.-phase" x="0" y="-1" halign="1" valign="1" color="red"/>
 
-				<text text="graph.axis.time" x="0" y="0" halign="-1" padding.r="16" valign="-1" color="graph_prim" />
+				<text text="graph.axis.time" x="0" y="0" halign="-1" padding.r="16" valign="-1" color="graph_prim"/>
 			</graph>
 		</group>
 
@@ -34,11 +34,11 @@
 
 				<knob id="time" size="24"/>
 				<knob id="react" size="24"/>
-				<knob id="sel" size="24" scale.color="yellow" balance="0.5"/>
+				<knob id="sel" size="24" scolor="balance" balance="0.5"/>
 
-				<value id="time" same_line="true"/>
-				<value id="react" same_line="true"/>
-				<value id="sel" same_line="true"/>
+				<value id="time" sline="true"/>
+				<value id="react" sline="true"/>
+				<value id="sel" sline="true"/>
 			</grid>
 		</group>
 
@@ -58,7 +58,7 @@
 						<indicator id="b_d" format="+-f5.1!" tcolor="green"/>
 						<indicator id="b_v" format="+-f4.3!" tcolor="green"/>
 
-						<label text="labels.values.selected" color="yellow" padding.right="6" hfill="true" htext="-1"/>
+						<label text="labels.values.selected" color="yellow" pad.r="6" hfill="true" htext="-1"/>
 						<indicator id="s_t" format="+-f5.3!" tcolor="yellow"/>
 						<indicator id="s_s" format="+-i4" tcolor="yellow"/>
 						<indicator id="s_d" format="+-f5.1!" tcolor="yellow"/>
@@ -70,18 +70,15 @@
 						<indicator id="w_d" format="+-f5.1!" tcolor="red"/>
 						<indicator id="w_v" format="+-f4.3!" tcolor="red"/>
 					</grid>
-					<align pad.l="8" pad.r="8">
+					<align pad.l="8" pad.r="6">
 						<vbox>
 							<label text="labels.reset"/>
-							<button id="reset" ui:inject="Button_gray" size="32"/>
-							<led id="reset" hole.color="PD1_hole" color="PD1" lcolor="PD1_led"
-								ui:inject="Button_Led"
-							/>
+							<button id="reset" size="32"/>
+							<led id="reset" pad.t="6"/>
 						</vbox>
 					</align>
 				</hbox>
 			</group>
 		</cell>
 	</grid>
-
 </plugin>
