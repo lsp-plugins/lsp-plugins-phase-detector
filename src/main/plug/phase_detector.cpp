@@ -109,9 +109,9 @@ namespace lsp
             drop_buffers();
         }
 
-        void phase_detector::init(plug::IWrapper *wrapper)
+        void phase_detector::init(plug::IWrapper *wrapper, plug::IPort **ports)
         {
-            Module::init(wrapper);
+            Module::init(wrapper, ports);
 
             // Bind ports
             lsp_trace("Binding ports");
@@ -120,27 +120,27 @@ namespace lsp
             // Bind audio ports
             for (size_t i=0; i<2; ++i)
             {
-                TRACE_PORT(vPorts[port_id]);
-                vIn[i]      = vPorts[port_id++];
+                TRACE_PORT(ports[port_id]);
+                vIn[i]      = ports[port_id++];
             }
             for (size_t i=0; i<2; ++i)
             {
-                TRACE_PORT(vPorts[port_id]);
-                vOut[i]     = vPorts[port_id++];
+                TRACE_PORT(ports[port_id]);
+                vOut[i]     = ports[port_id++];
             }
 
             // Bind controls
             lsp_trace("Binding controls");
-            TRACE_PORT(vPorts[port_id]);
-            pBypass     = vPorts[port_id++];
-            TRACE_PORT(vPorts[port_id]);
-            pReset      = vPorts[port_id++];
-            TRACE_PORT(vPorts[port_id]);
-            pTime       = vPorts[port_id++];
-            TRACE_PORT(vPorts[port_id]);
-            pReactivity = vPorts[port_id++];
-            TRACE_PORT(vPorts[port_id]);
-            pSelector   = vPorts[port_id++];
+            TRACE_PORT(ports[port_id]);
+            pBypass     = ports[port_id++];
+            TRACE_PORT(ports[port_id]);
+            pReset      = ports[port_id++];
+            TRACE_PORT(ports[port_id]);
+            pTime       = ports[port_id++];
+            TRACE_PORT(ports[port_id]);
+            pReactivity = ports[port_id++];
+            TRACE_PORT(ports[port_id]);
+            pSelector   = ports[port_id++];
 
             // Bind meters
             lsp_trace("Binding meters");
@@ -148,18 +148,18 @@ namespace lsp
             {
                 meters_t *vm = &vMeters[i];
 
-                TRACE_PORT(vPorts[port_id]);
-                vm->pTime       = vPorts[port_id++];
-                TRACE_PORT(vPorts[port_id]);
-                vm->pSamples    = vPorts[port_id++];
-                TRACE_PORT(vPorts[port_id]);
-                vm->pDistance   = vPorts[port_id++];
-                TRACE_PORT(vPorts[port_id]);
-                vm->pValue      = vPorts[port_id++];
+                TRACE_PORT(ports[port_id]);
+                vm->pTime       = ports[port_id++];
+                TRACE_PORT(ports[port_id]);
+                vm->pSamples    = ports[port_id++];
+                TRACE_PORT(ports[port_id]);
+                vm->pDistance   = ports[port_id++];
+                TRACE_PORT(ports[port_id]);
+                vm->pValue      = ports[port_id++];
             }
 
-            TRACE_PORT(vPorts[port_id]);
-            pFunction   = vPorts[port_id++];
+            TRACE_PORT(ports[port_id]);
+            pFunction   = ports[port_id++];
         }
 
         void phase_detector::destroy()

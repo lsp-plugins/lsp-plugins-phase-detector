@@ -115,7 +115,7 @@ namespace lsp
                 explicit            phase_detector(const meta::plugin_t *meta);
                 virtual            ~phase_detector();
 
-                virtual void        init(plug::IWrapper *wrapper);
+                virtual void        init(plug::IWrapper *wrapper, plug::IPort **ports);
                 void                destroy();
 
             public:
