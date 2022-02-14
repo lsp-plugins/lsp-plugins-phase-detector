@@ -80,6 +80,15 @@ namespace lsp
 
         static const int phase_detector_classes[] = { C_ANALYSER, -1 };
 
+        const meta::bundle_t phase_detector_bundle =
+        {
+            "phase_detector",
+            "Phase Detector",
+            B_UTILITIES,
+            "j-rNb409GYg",
+            "This plugin allows to detect phase between two sources. For example, for\ntwo or more microphones set at the different positions and distances from\nthe sound source. The internal algorithm is based on correlation function\ncalculation between two sources. Be aware: because there are many correlation\nfunctions for different phases calculated at one time, the entire analyzing\nprocess can take a lot of CPU resources. You can also reduce CPU utilization\nby lowering the maximum analysis time. The plugin bypasses input signal without\nany modifications, so it can be placed everywhere it's needed."
+        };
+
         const plugin_t phase_detector =
         {
             "Phasendetektor",
@@ -98,7 +107,8 @@ namespace lsp
             phase_detector_ports,
             "util/phase_detector.xml",
             NULL,
-            NULL
+            NULL,
+            &phase_detector_bundle
         };
 
     }
