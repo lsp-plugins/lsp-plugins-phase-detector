@@ -1,0 +1,7 @@
+{
+	"phase_detector": {
+		"name": "Phasendetektor",
+		"description": "Dieses Plugin misst Phasenverschiebungen zwischen zwei \nQuellsignalen. Zum Beispiel, wenn zwei oder mehr Mikrofone an \nverschiedenen Orten oder in verschiedenen Entfernungen vom \nQuellsignal positioniert wurden. Der interne Algorithmus \nbasiert auf der Korrelation von Funktionsnerechnungen \nzwischen zwei Quellen. Aber Achtung: aufgrund der Komplexität der Berechnungen \nkann die Analyse eine hohe CPU-Auslastung bewirken. \nDie CPU-Nutzung kann vermindert werden, indem die maximale \nAnalysezeit reduziert wird. Das Plugin umgeht das Eigangssignal \nohne weitere Modifikation, es kann damit eingesetzt werden, \nwo es benötigt wird."
+	}
+}
+
