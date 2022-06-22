@@ -24,7 +24,7 @@ ARTIFACT_NAME               = lsp-plugins-phase-detector
 ARTIFACT_TYPE               = plug
 ARTIFACT_DESC               = LSP Phase Detector Plugin Series
 ARTIFACT_HEADERS            = lsp-plug.in
-ARTIFACT_VERSION            = 1.0.3
+ARTIFACT_VERSION            = 1.0.4-devel
 
 
 
