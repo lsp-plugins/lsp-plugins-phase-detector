@@ -25,7 +25,7 @@
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MAJOR         1
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MINOR         0
-#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         5
+#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         6
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION  \
     LSP_MODULE_VERSION( \
@@ -78,7 +78,8 @@ namespace lsp
             PORTS_END
         };
 
-        static const int phase_detector_classes[] = { C_ANALYSER, -1 };
+        static const int plugin_classes[]           = { C_ANALYSER, -1 };
+        static const int clap_features[]            = { CF_ANALYZER, CF_UTILITY, -1 };
 
         const meta::bundle_t phase_detector_bundle =
         {
@@ -101,8 +102,10 @@ namespace lsp
             "jffz",
             LSP_LADSPA_PHASE_DETECTOR_BASE + 0,
             LSP_LADSPA_URI("phase_detector"),
+            LSP_CLAP_URI("phase_detector"),
             LSP_PLUGINS_PHASE_DETECTOR_VERSION,
-            phase_detector_classes,
+            plugin_classes,
+            clap_features,
             E_DUMP_STATE,
             phase_detector_ports,
             "util/phase_detector.xml",
@@ -110,8 +113,7 @@ namespace lsp
             NULL,
             &phase_detector_bundle
         };
-
-    }
-}
+    } /* namespace meta */
+} /* namespace lsp */
 
 
