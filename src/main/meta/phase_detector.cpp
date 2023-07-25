@@ -106,7 +106,7 @@ namespace lsp
             LSP_PLUGINS_PHASE_DETECTOR_VERSION,
             plugin_classes,
             clap_features,
-            E_DUMP_STATE,
+            E_DUMP_STATE | E_INLINE_DISPLAY,
             phase_detector_ports,
             "util/phase_detector.xml",
             NULL,
