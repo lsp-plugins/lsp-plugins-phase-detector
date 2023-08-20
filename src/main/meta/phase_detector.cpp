@@ -25,7 +25,7 @@
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MAJOR         1
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MINOR         0
-#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         11
+#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         12
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION  \
     LSP_MODULE_VERSION( \
@@ -106,7 +106,7 @@ namespace lsp
             LSP_PLUGINS_PHASE_DETECTOR_VERSION,
             plugin_classes,
             clap_features,
-            E_DUMP_STATE,
+            E_DUMP_STATE | E_INLINE_DISPLAY,
             phase_detector_ports,
             "util/phase_detector.xml",
             NULL,
