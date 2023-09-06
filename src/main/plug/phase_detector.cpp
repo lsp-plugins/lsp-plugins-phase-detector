@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2021 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2021 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2023 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2023 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-phase-detector
  * Created on: 12 мая 2021 г.
@@ -28,12 +28,16 @@
 
 #include <lsp-plug.in/shared/id_colors.h>
 
-#define TRACE_PORT(p)       lsp_trace("  port id=%s", (p)->metadata()->id);
-
 namespace lsp
 {
     namespace plugins
     {
+        static plug::IPort *TRACE_PORT(plug::IPort *p)
+        {
+            lsp_trace("  port id=%s", (p)->metadata()->id);
+            return p;
+        }
+
         //---------------------------------------------------------------------
         // Plugin factory
         static const meta::plugin_t *plugins[] =
@@ -106,7 +110,7 @@ namespace lsp
 
         phase_detector::~phase_detector()
         {
-            drop_buffers();
+            do_destroy();
         }
 
         void phase_detector::init(plug::IWrapper *wrapper, plug::IPort **ports)
@@ -119,28 +123,18 @@ namespace lsp
 
             // Bind audio ports
             for (size_t i=0; i<2; ++i)
-            {
-                TRACE_PORT(ports[port_id]);
-                vIn[i]      = ports[port_id++];
-            }
+                vIn[i]      = TRACE_PORT(ports[port_id++]);
+
             for (size_t i=0; i<2; ++i)
-            {
-                TRACE_PORT(ports[port_id]);
-                vOut[i]     = ports[port_id++];
-            }
+                vOut[i]     = TRACE_PORT(ports[port_id++]);
 
             // Bind controls
             lsp_trace("Binding controls");
-            TRACE_PORT(ports[port_id]);
-            pBypass     = ports[port_id++];
-            TRACE_PORT(ports[port_id]);
-            pReset      = ports[port_id++];
-            TRACE_PORT(ports[port_id]);
-            pTime       = ports[port_id++];
-            TRACE_PORT(ports[port_id]);
-            pReactivity = ports[port_id++];
-            TRACE_PORT(ports[port_id]);
-            pSelector   = ports[port_id++];
+            pBypass     = TRACE_PORT(ports[port_id++]);
+            pReset      = TRACE_PORT(ports[port_id++]);
+            pTime       = TRACE_PORT(ports[port_id++]);
+            pReactivity = TRACE_PORT(ports[port_id++]);
+            pSelector   = TRACE_PORT(ports[port_id++]);
 
             // Bind meters
             lsp_trace("Binding meters");
@@ -148,23 +142,18 @@ namespace lsp
             {
                 meters_t *vm = &vMeters[i];
 
-                TRACE_PORT(ports[port_id]);
-                vm->pTime       = ports[port_id++];
-                TRACE_PORT(ports[port_id]);
-                vm->pSamples    = ports[port_id++];
-                TRACE_PORT(ports[port_id]);
-                vm->pDistance   = ports[port_id++];
-                TRACE_PORT(ports[port_id]);
-                vm->pValue      = ports[port_id++];
+                vm->pTime       = TRACE_PORT(ports[port_id++]);
+                vm->pSamples    = TRACE_PORT(ports[port_id++]);
+                vm->pDistance   = TRACE_PORT(ports[port_id++]);
+                vm->pValue      = TRACE_PORT(ports[port_id++]);
             }
 
-            TRACE_PORT(ports[port_id]);
-            pFunction   = ports[port_id++];
+            pFunction   = TRACE_PORT(ports[port_id++]);
         }
 
         void phase_detector::destroy()
         {
-            drop_buffers();
+            do_destroy();
             Module::destroy();
         }
 
@@ -221,7 +210,7 @@ namespace lsp
             dsp::fill_zero(vNormalized, nMaxVectorSize * 2);
         }
 
-        void phase_detector::drop_buffers()
+        void phase_detector::do_destroy()
         {
             // Drop previously used buffers
             if (vA.pData != NULL)
@@ -305,7 +294,7 @@ namespace lsp
             */
 
             // Cleanup buffers
-            drop_buffers();
+            do_destroy();
 
             nMaxVectorSize  = dspu::millis_to_samples(fSampleRate, meta::phase_detector_metadata::DETECT_TIME_MAX);
             vA.pData        = new float[nMaxVectorSize * 3];
@@ -613,8 +602,8 @@ namespace lsp
             v->write_object("pIDisplay", pIDisplay);
         }
 
-    }
-}
+    } /* namespace plugins */
+} /* namespace lsp */
 
 
 
