@@ -90,6 +90,20 @@ namespace lsp
             "This plugin allows one to detect phase between two sources. For example, for\ntwo or more microphones set at the different positions and distances from\nthe sound source. The internal algorithm is based on correlation function\ncalculation between two sources. Be aware: because there are many correlation\nfunctions for different phases calculated at one time, the entire analyzing\nprocess can take a lot of CPU resources. You can also reduce CPU utilization\nby lowering the maximum analysis time. The plugin bypasses input signal without\nany modifications, so it can be placed everywhere it's needed."
         };
 
+        MONO_PORT_GROUP_PORT(in_a, "in_a");
+        MONO_PORT_GROUP_PORT(in_b, "in_b");
+        MONO_PORT_GROUP_PORT(out_a, "out_a");
+        MONO_PORT_GROUP_PORT(out_b, "out_b");
+
+        const port_group_t phase_detector_port_groups[] =
+        {
+            { "in_a",           "Input A",       GRP_MONO,       PGF_IN | PGF_MAIN,         in_a_ports          },
+            { "in_b",           "Input B",       GRP_MONO,       PGF_IN,                    in_b_ports          },
+            { "out_a",          "Output A",      GRP_MONO,       PGF_OUT | PGF_MAIN,        out_a_ports         },
+            { "out_b",          "Output B",      GRP_MONO,       PGF_OUT,                   out_b_ports         },
+            PORT_GROUPS_END
+        };
+
         const plugin_t phase_detector =
         {
             "Phasendetektor",
@@ -110,7 +124,7 @@ namespace lsp
             phase_detector_ports,
             "util/phase_detector.xml",
             NULL,
-            NULL,
+            phase_detector_port_groups,
             &phase_detector_bundle
         };
     } /* namespace meta */
