@@ -108,6 +108,7 @@ namespace lsp
         {
             "Phasendetektor",
             "Phase Detector",
+            "Phase Detector",
             "PD1",
             &developers::v_sadovnikov,
             "phase_detector",
