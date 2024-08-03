@@ -25,7 +25,7 @@
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MAJOR         1
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MINOR         0
-#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         19
+#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         20
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION  \
     LSP_MODULE_VERSION( \
@@ -112,14 +112,17 @@ namespace lsp
             "PD1",
             &developers::v_sadovnikov,
             "phase_detector",
-            LSP_LV2_URI("phase_detector"),
-            LSP_LV2UI_URI("phase_detector"),
-            "jffz",
-            LSP_VST3_UID("pd1     jffz"),
-            LSP_VST3UI_UID("pd1     jffz"),
-            LSP_LADSPA_PHASE_DETECTOR_BASE + 0,
-            LSP_LADSPA_URI("phase_detector"),
-            LSP_CLAP_URI("phase_detector"),
+            {
+                LSP_LV2_URI("phase_detector"),
+                LSP_LV2UI_URI("phase_detector"),
+                "jffz",
+                LSP_VST3_UID("pd1     jffz"),
+                LSP_VST3UI_UID("pd1     jffz"),
+                LSP_LADSPA_PHASE_DETECTOR_BASE + 0,
+                LSP_LADSPA_URI("phase_detector"),
+                LSP_CLAP_URI("phase_detector"),
+                LSP_GST_UID("phase_detector"),
+            },
             LSP_PLUGINS_PHASE_DETECTOR_VERSION,
             plugin_classes,
             clap_features,
