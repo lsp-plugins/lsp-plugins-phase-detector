@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2024 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2024 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2025 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2025 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-phase-detector
  * Created on: 12 мая 2021 г.
@@ -53,8 +53,8 @@ namespace lsp
             // Input controls
             BYPASS,
             TRIGGER("reset", "Reset"),
-            LOG_CONTROL("time", "Time", U_MSEC, phase_detector_metadata::DETECT_TIME),
-            LOG_CONTROL("react", "Reactivity", U_SEC, phase_detector_metadata::REACT_TIME),
+            LOG_CONTROL("time", "Time", "Time", U_MSEC, phase_detector_metadata::DETECT_TIME),
+            LOG_CONTROL("react", "Reactivity", "Reactivity", U_SEC, phase_detector_metadata::REACT_TIME),
             CONTROL("sel", "Selector", U_PERCENT, phase_detector_metadata::SELECTOR),
 
             // Output controls
