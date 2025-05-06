@@ -52,7 +52,7 @@ namespace lsp
 
             // Input controls
             BYPASS,
-            TRIGGER("reset", "Reset"),
+            TRIGGER("reset", "Reset", "Reset"),
             LOG_CONTROL("time", "Time", "Time", U_MSEC, phase_detector_metadata::DETECT_TIME),
             LOG_CONTROL("react", "Reactivity", "Reactivity", U_SEC, phase_detector_metadata::REACT_TIME),
             CONTROL("sel", "Selector", U_PERCENT, phase_detector_metadata::SELECTOR),
