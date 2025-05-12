@@ -55,7 +55,7 @@ namespace lsp
             TRIGGER("reset", "Reset", "Reset"),
             LOG_CONTROL("time", "Time", "Time", U_MSEC, phase_detector_metadata::DETECT_TIME),
             LOG_CONTROL("react", "Reactivity", "Reactivity", U_SEC, phase_detector_metadata::REACT_TIME),
-            CONTROL("sel", "Selector", U_PERCENT, phase_detector_metadata::SELECTOR),
+            CONTROL("sel", "Selector", "Selector", U_PERCENT, phase_detector_metadata::SELECTOR),
 
             // Output controls
             METERZ("b_t", "Best time", U_MSEC, phase_detector_metadata::TIME),
