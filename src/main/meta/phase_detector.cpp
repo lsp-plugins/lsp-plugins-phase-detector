@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2024 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2024 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2025 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2025 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-phase-detector
  * Created on: 12 мая 2021 г.
@@ -25,7 +25,7 @@
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MAJOR         1
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MINOR         0
-#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         24
+#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         25
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION  \
     LSP_MODULE_VERSION( \
@@ -52,10 +52,10 @@ namespace lsp
 
             // Input controls
             BYPASS,
-            TRIGGER("reset", "Reset"),
-            LOG_CONTROL("time", "Time", U_MSEC, phase_detector_metadata::DETECT_TIME),
-            LOG_CONTROL("react", "Reactivity", U_SEC, phase_detector_metadata::REACT_TIME),
-            CONTROL("sel", "Selector", U_PERCENT, phase_detector_metadata::SELECTOR),
+            TRIGGER("reset", "Reset", "Reset"),
+            LOG_CONTROL("time", "Time", "Time", U_MSEC, phase_detector_metadata::DETECT_TIME),
+            LOG_CONTROL("react", "Reactivity", "Reactivity", U_SEC, phase_detector_metadata::REACT_TIME),
+            CONTROL("sel", "Selector", "Selector", U_PERCENT, phase_detector_metadata::SELECTOR),
 
             // Output controls
             METERZ("b_t", "Best time", U_MSEC, phase_detector_metadata::TIME),
