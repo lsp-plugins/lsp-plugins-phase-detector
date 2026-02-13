@@ -129,7 +129,7 @@ namespace lsp
             clap_features,
             E_DUMP_STATE | E_INLINE_DISPLAY,
             phase_detector_ports,
-            "util/phase_detector.xml",
+            "plugins/util/phase_detector.xml",
             NULL,
             phase_detector_port_groups,
             &phase_detector_bundle
