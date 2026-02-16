@@ -132,11 +132,10 @@ namespace lsp
             "plugins/util/phase_detector.xml",
             NULL,
             phase_detector_port_groups,
-            &phase_detector_bundle
+            &phase_detector_bundle,
+            1
         };
         LSP_REGISTER_METADATA(phase_detector);
 
     } /* namespace meta */
 } /* namespace lsp */
-
-
