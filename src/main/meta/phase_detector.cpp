@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2025 Linux Studio Plugins Project <https://lsp-plug.in/>
- *           (C) 2025 Vladimir Sadovnikov <sadko4u@gmail.com>
+ * Copyright (C) 2026 Linux Studio Plugins Project <https://lsp-plug.in/>
+ *           (C) 2026 Vladimir Sadovnikov <sadko4u@gmail.com>
  *
  * This file is part of lsp-plugins-phase-detector
  * Created on: 12 мая 2021 г.
@@ -20,12 +20,13 @@
  */
 
 #include <lsp-plug.in/plug-fw/meta/ports.h>
+#include <lsp-plug.in/plug-fw/meta/registry.h>
 #include <lsp-plug.in/shared/meta/developers.h>
 #include <private/meta/phase_detector.h>
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MAJOR         1
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MINOR         0
-#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         29
+#define LSP_PLUGINS_PHASE_DETECTOR_VERSION_MICRO         30
 
 #define LSP_PLUGINS_PHASE_DETECTOR_VERSION  \
     LSP_MODULE_VERSION( \
@@ -128,12 +129,13 @@ namespace lsp
             clap_features,
             E_DUMP_STATE | E_INLINE_DISPLAY,
             phase_detector_ports,
-            "util/phase_detector.xml",
+            "plugins/util/phase_detector.xml",
             NULL,
             phase_detector_port_groups,
-            &phase_detector_bundle
+            &phase_detector_bundle,
+            1
         };
+        LSP_REGISTER_METADATA(phase_detector);
+
     } /* namespace meta */
 } /* namespace lsp */
-
-
