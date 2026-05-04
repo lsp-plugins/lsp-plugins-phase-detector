@@ -311,8 +311,6 @@ namespace lsp
 
         void phase_detector::update_settings()
         {
-            lsp_debug("update settings sample_rate = %ld", get_sample_rate());
-
             bool clear          = false;
             bool old_bypass     = bBypass;
 
